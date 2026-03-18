@@ -20,7 +20,7 @@ jobs:
 
       - name: Update submodule to latest remote version
         run: |
-          git submodule update --init --recursive -f
+          git submodule update --init --recursive --remote -f
           git add test
 
       - name: Commit and Push changes
