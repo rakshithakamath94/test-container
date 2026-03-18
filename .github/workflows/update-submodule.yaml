@@ -11,7 +11,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: false # Do not checkout submodules automatically
+          submodules: false
+    with:
+      token: ${{ secrets.PAT }}
 
       - name: Configure Git
         run: |
