@@ -27,3 +27,5 @@ jobs:
         run: |
           git commit -s -m 'Update submodule to latest'
           git push origin release-9.1
+        env:
+          - "{{ secrets.PAT }}"
