@@ -19,9 +19,6 @@ jobs:
           git config --global user.email "rakshithakamath94@gmail.com"
           git config --global user.name "Rakshitha Kamath"
 
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-
       - name: Update submodule to latest remote version
         run: |
           git submodule update --init --recursive --remote -f
