@@ -23,7 +23,7 @@ jobs:
         id: check_commits
         run: |
           git submodule update --init --recursive --remote -f
-          git diff --submodule --quiet HEAD
+          git diff --submodule
 
       - name: Commit and Push changes
         if: ${{ github.event.inputs.run_deploy == 'true' }}
