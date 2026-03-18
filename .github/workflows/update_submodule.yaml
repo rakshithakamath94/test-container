@@ -1,0 +1,28 @@
+name: Update Submodule
+on:
+  repository_dispatch:
+    types:
+      - update-submodule
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@4
+        with:
+          submodule: recursive
+      - name: Authorize git
+        run: |
+          git config --global user.name "Rakshitha Kamath"
+          git config --global user.email "rakshithakamath94@gmail.com"
+      - name: Update submodule
+        run: |
+          git submodule update --init --recursive --f
+      - name: Commit changes
+        run: |
+          git add test
+          git commit -s -m "update submodule to latest"
+          git push origin release-9.1
