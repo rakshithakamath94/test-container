@@ -1,28 +1,29 @@
-name: Update Submodule
+name: Auto Update Submodule
 on:
-  repository_dispatch:
-    types:
-      - update-submodule
+  schedule:
+    - cron: '* * * * *'
+  workflow_dispatch: 
+
 jobs:
   update-submodule:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: recursive
-      - name: Authorize Git
+          submodules: false # Do not checkout submodules automatically
+
+      - name: Configure Git
         run: |
           git config --global user.name "Rakshitha Kamath"
           git config --global user.email "rakshithakamath94@gmail.com"
-      - name: Update submodule
+
+      - name: Update submodule to latest remote version
         run: |
           git submodule update --init --recursive -f
-      - name: Commit changes
-        run: |
           git add test
-          git commit -m "Update submodule to latest commit"
+
+      - name: Commit and Push changes
+        run: |
+          git commit -s -m 'Update submodule to latest'
           git push origin release-9.1
