@@ -20,18 +20,13 @@ jobs:
           git config --global user.name "Rakshitha Kamath"
 
       - name: Update submodule to latest remote version
+        id: check_commits
         run: |
           git submodule update --init --recursive --remote -f
-          echo "$(git diff --submodule --quiet HEAD)"
-          if ! git diff --submodule --quiet HEAD; then
-            echo "There are uncommitted changes (staged or unstaged)."
-            git add test
-          else
-            echo "No uncommitted changes."
-            exit 0
-          fi
+          git diff --submodule --quiet HEAD
 
       - name: Commit and Push changes
+        if: ${{ github.event.inputs.run_deploy == 'true' }}
         run: |
           git commit -s -m 'Update submodule to latest'
           git push origin release-9.1
