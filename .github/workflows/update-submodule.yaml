@@ -26,7 +26,7 @@ jobs:
           git diff --submodule
 
       - name: Commit and Push changes
-        if: ${{ github.event.inputs.check_commits == 'true' }}
+        if: steps.check_commits.outcome == '0'
         run: |
           git commit -s -m 'Update submodule to latest'
           git push origin release-9.1
