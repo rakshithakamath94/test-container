@@ -11,19 +11,18 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@4
+        uses: actions/checkout@v4
         with:
-          submodule: recursive
-      - name: Authorize git
+          submodules: recursive
+      - name: Authorize Git
         run: |
           git config --global user.name "Rakshitha Kamath"
           git config --global user.email "rakshithakamath94@gmail.com"
       - name: Update submodule
         run: |
-          git submodule update --init --recursive --f
+          git submodule update --init --recursive -f
       - name: Commit changes
         run: |
           git add test
-          git commit -s -m "update submodule to latest"
+          git commit -m "Update submodule to latest commit"
           git push origin release-9.1
-~                                     
