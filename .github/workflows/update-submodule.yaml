@@ -28,6 +28,7 @@ jobs:
       - name: Commit and Push changes
         if: steps.check_commits.outcome == '0'
         run: |
+          git add test/
           git commit -s -m 'Update submodule to latest'
           git push origin release-9.1
         env:
