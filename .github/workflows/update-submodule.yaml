@@ -15,8 +15,9 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "Rakshitha Kamath"
           git config --global user.email "rakshithakamath94@gmail.com"
+          git config --global user.name "Rakshitha Kamath"
+
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
 
