@@ -17,6 +17,8 @@ jobs:
         run: |
           git config --global user.name "Rakshitha Kamath"
           git config --global user.email "rakshithakamath94@gmail.com"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
 
       - name: Update submodule to latest remote version
         run: |
@@ -27,5 +29,5 @@ jobs:
         run: |
           git commit -s -m 'Update submodule to latest'
           git push origin release-9.1
-        with:
-          token: ${{ secrets.PAT }} 
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
