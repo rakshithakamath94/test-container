@@ -22,6 +22,7 @@ jobs:
       - name: Update submodule to latest remote version
         run: |
           git submodule update --init --recursive --remote -f
+          echo "$(git diff --submodule --quiet HEAD)"
           if ! git diff --submodule --quiet HEAD; then
             echo "There are uncommitted changes (staged or unstaged)."
             git add test
